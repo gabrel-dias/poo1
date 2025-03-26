@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class Programa {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
         CadastroDeContas cadastroDeContas = null;
         int opcao;
 
@@ -91,10 +90,14 @@ public class Programa {
                     }
                     break;
                 case 5: // Buscar conta pelo número
-                    if (cadastroDeContas.getContas().size() > 0) {
+                    if (cadastroDeContas == null || cadastroDeContas.qtdCadastradas() == 0) {
+                        System.out.println("Nenhuma conta cadastrada no momento.");
+                    } else
+                        System.out.print("Digite o número da conta que será buscada: ");
+                    if (cadastroDeContas != null) {
                         int numeroConta = sc.nextInt();
                         cadastroDeContas.buscarConta(numeroConta);
-                    } else System.out.println("Nenhuma conta cadastrada no momento.");
+                    }
                     break;
                 case 0: // Sair
                     System.out.println("Encerrando o programa. Até mais!");
